@@ -1,0 +1,114 @@
+/* 기본 레이아웃 */
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #fafafa;
+  color: #222;
+}
+
+h1 { margin-bottom: 16px; }
+h3 { margin: 12px 0; }
+
+/* 그리드/행 유틸 */
+.grid { display: grid; gap: 10px; }
+.grid.two { grid-template-columns: 1fr 1fr; }
+.col-2 { grid-column: 1 / -1; }
+.row { display: flex; gap: 8px; align-items: center; }
+.row.wrap { flex-wrap: wrap; }
+.toolbar { margin-bottom: 8px; }
+
+/* 카드 */
+.card {
+  background: #fff;
+  border: 1px solid #e6e6eb;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+/* 입력/선택/버튼 */
+input, select {
+  margin: 5px;
+  padding: 10px 12px;
+  border: 1px solid #dcdde1;
+  border-radius: 10px;
+  font-size: 14px;
+  background: #fff;
+  flex: 1;
+  min-width: 160px;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: #0a84ff;
+  box-shadow: 0 0 0 3px rgba(10,132,255,.15);
+}
+
+.btn {
+  margin: 5px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border: 1px solid #dcdde1;
+  border-radius: 10px;
+  background: #fff;
+  font-weight: 600;
+}
+.btn.primary { background: #0a84ff; color: #fff; border-color: transparent; }
+.btn.danger { background: #ff4d4f; color: #fff; border-color: transparent; }
+
+/* 상태 영역 */
+.status { margin-top: 10px; font-weight: 600; }
+
+/* 테이블: 기본(데스크톱) */
+.table-wrap { overflow-x: auto; border-radius: 12px; }
+table { width: 100%; border-collapse: collapse; background: #fff; min-width: 900px; }
+th, td { padding: 10px; text-align: center; border-bottom: 1px solid #eee; }
+thead th { background: #f4f6f8; }
+
+/* 장바구니 */
+.cart-list { list-style: none; padding: 0; margin: 0; }
+.cart-empty { color: #666; font-size: 14px; padding: 8px; }
+.cart-item {
+  background: #fff;
+  border: 1px solid #e8e8ef;
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin: 6px 0;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.cart-name { font-weight: 600; }
+.qty-wrap { display: flex; align-items: center; gap: 6px; }
+.qty-input { width: 70px; text-align: center; padding: 8px; }
+
+/* ---------- 모바일 전환 (<= 768px) ---------- */
+@media (max-width: 768px) {
+  body { padding: 16px; }
+  .grid.two { grid-template-columns: 1fr; }
+  input, select, .btn { width: 100%; margin: 6px 0; }
+  .table-wrap { border: none; }
+  table { min-width: 0; border: 0; }
+
+  /* 테이블을 카드형으로 변환 */
+  thead { display: none; }
+  table, tbody, tr, td { display: block; width: 100%; }
+  tr {
+    background: #fff;
+    border: 1px solid #e6e6eb;
+    border-radius: 12px;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 0;
+    padding: 10px 6px;
+  }
+  td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #555;
+    margin-right: 12px;
+  }
+}

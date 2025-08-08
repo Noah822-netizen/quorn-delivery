@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>퀀 오프라인 배송지 입력 (소비자 · 반응형)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- 카카오 주소 API -->
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<body>
+
+  <h1>배송지 입력 도구 (소비자)</h1>
+
+  <!-- 주소 검색 -->
+  <div class="toolbar">
+    <button type="button" class="btn" onclick="execDaumPostcode()">주소 검색</button>
+  </div>
+
+  <!-- 입력 폼 -->
+  <form id="addressForm" onsubmit="event.preventDefault(); submitAddress();" class="grid two">
+    <input type="text" id="name" placeholder="이름" />
+    <input type="text" id="phone" placeholder="연락처" inputmode="tel" />
+    <input type="text" id="road" placeholder="도로명 주소" readonly class="col-2" />
+    <input type="text" id="jibun" placeholder="지번 주소" readonly class="col-2" />
+    <input type="text" id="zipcode" placeholder="우편번호" readonly />
+    <input type="text" id="detail" placeholder="상세 주소" />
+  </form>
+
+  <!-- 상품 선택 + 장바구니 -->
+  <section class="card">
+    <h3>상품 선택</h3>
+    <div class="row wrap">
+      <select id="product">
+        <option value="">상품을 선택하세요</option>
+        <option value="퀀_크리스피 너겟">퀀_크리스피 너겟</option>
+        <option value="퀀_민츠">퀀_민츠</option>
+        <option value="퀀_서던 프라이드 바이츠">퀀_서던 프라이드 바이츠</option>
+        <option value="퀀_스웨덴스타일 볼">퀀_스웨덴스타일 볼</option>
+        <option value="퀀_필렛">퀀_필렛</option>
+        <option value="퀀_피스">퀀_피스</option>
+        <option value="퀀_소시지 스타일">퀀_소시지 스타일</option>
+      </select>
+      <input type="number" id="quantity" placeholder="주문 수량" min="1" value="1" />
+      <button type="button" class="btn primary" onclick="addToCart()">장바구니 담기</button>
+      <button type="submit" class="btn" onclick="submitAddress()">배송지 등록</button>
+    </div>
+
+    <h3 style="margin-top:14px;">장바구니</h3>
+    <ul id="cartList" class="cart-list">
+      <li class="cart-empty">장바구니가 비어 있습니다. 상품을 담아주세요.</li>
+    </ul>
+  </section>
+
+  <!-- 등록 현황 -->
+  <div class="status">
+    <span id="count">등록된 배송지: 0건</span>
+  </div>
+
+  <!-- 리스트 테이블 (모바일에서 카드형으로 자동 전환) -->
+  <div class="table-wrap">
+    <table id="addressList" border="1">
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>연락처</th>
+          <th>도로명 주소</th>
+          <th>지번 주소</th>
+          <th>상세 주소</th>
+          <th>우편번호</th>
+          <th>상품 목록</th>
+          <th>삭제</th>
+          <th>복사</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="consumer.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>퀀 오프라인 배송지 관리 (관리자)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>배송지 관리 (관리자)</h1>
+
+  <!-- 부가기능 -->
+  <div style="margin-top: 10px;">
+    <span id="count">등록된 배송지: 0건</span>
+    <button type="button" id="clearAll">전체 삭제</button>
+    <button id="downloadExcel">엑셀로 저장</button>
+  </div>
+
+  <!-- 리스트 테이블 -->
+  <table id="addressList" border="1">
+    <thead>
+      <tr>
+        <th>이름</th>
+        <th>연락처</th>
+        <th>도로명 주소</th>
+        <th>지번 주소</th>
+        <th>상세 주소</th>
+        <th>우편번호</th>
+        <th>상품 목록</th>
+        <th>삭제</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- SheetJS for Excel Export -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+  <script src="admin.js"></script>
+
+</body>
+</html>
